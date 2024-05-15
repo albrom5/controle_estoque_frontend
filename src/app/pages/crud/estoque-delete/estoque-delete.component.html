@@ -1,0 +1,27 @@
+<mat-card class="mat-elevation-z4">
+    <mat-card-title> Excluir o estoque  </mat-card-title>
+    <form [formGroup]="estoqueForm">
+      <mat-form-field>
+        <input
+          placeholder="Nome"
+          matInput
+          formControlName="name"
+          name="name"
+          readonly=""
+        />
+      </mat-form-field>
+  
+  
+    </form>
+  
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="deleteEstoque()"
+      [disabled]="estoqueForm.invalid"
+    >
+      Excluir
+    </button>
+    <button mat-raised-button (click)="cancel()">Cancelar</button>
+  </mat-card>
+  
