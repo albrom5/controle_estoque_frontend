@@ -18,15 +18,15 @@ export class ProductReadComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.readProduct().subscribe((products) => {
-      this.products = products;
+      this.products = products['lista'];
       this.sortProductsAlphabetically();
 
     });
   
   }
 
-sortProductsAlphabetically(): void {
-    this.products.sort((a, b) => a.name.localeCompare(b.name));
+  sortProductsAlphabetically(): void {
+    this.products.sort((a, b) => a.nome.localeCompare(b.nome));
   }
 
 

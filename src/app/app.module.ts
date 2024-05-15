@@ -41,6 +41,7 @@ import { EstoqueCreateComponent } from './pages/crud/estoque-create/estoque-crea
 import { EstoqueDeleteComponent } from './pages/crud/estoque-delete/estoque-delete.component';
 import { EstoqueReadComponent } from './pages/crud/estoque-read/estoque-read.component';
 import { EstoqueUpdateComponent } from './shared/components/estoque/estoque-update/estoque-update.component';
+import { authInterceptorProvider } from './shared/helpers/auth.interceptor';
 
 registerLocaleData(localePt);
 
@@ -86,6 +87,7 @@ registerLocaleData(localePt);
     MaterialModule,
   ],
   providers: [
+    authInterceptorProvider,
     ProductService,
     {
       provide: LOCALE_ID,

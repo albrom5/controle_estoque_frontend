@@ -27,8 +27,8 @@ export class ProductService {
     return this.http.post<IProduct>(`${environment.apiurl}/products`, product);
   }
 
-  readProduct(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`${environment.apiurl}/produtos`);
+  readProduct(): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/produtos`);
   }
 
   readById(id: string): Observable<IProduct> {

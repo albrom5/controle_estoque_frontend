@@ -33,9 +33,9 @@ export class ProductDeleteComponent implements OnInit {
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('id');
     this.productService.readById(this.productId).subscribe((product) => {
-      this.productForm.controls['name'].setValue(product.name);
-      this.productForm.controls['price'].setValue(product.price);
-      this.productForm.controls['validade'].setValue(product.validade);
+      this.productForm.controls['name'].setValue(product.nome);
+      // this.productForm.controls['price'].setValue(product.price);
+      // this.productForm.controls['validade'].setValue(product.validade);
     });
   }
 

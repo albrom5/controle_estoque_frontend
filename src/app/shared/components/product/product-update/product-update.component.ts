@@ -34,9 +34,9 @@ export class ProductUpdateComponent implements OnInit {
     this.productId = this.route.snapshot.paramMap.get('id');
     console.log('productId' + this.productId)
     this.productService.readById(this.productId).subscribe((product) => {
-      this.productForm.controls['name'].setValue(product.name);
-      this.productForm.controls['price'].setValue(product.price);
-      this.productForm.controls['validade'].setValue(product.validade);
+      this.productForm.controls['name'].setValue(product.nome);
+      // this.productForm.controls['price'].setValue(product.price);
+      // this.productForm.controls['validade'].setValue(product.validade);
     });
   }
 
