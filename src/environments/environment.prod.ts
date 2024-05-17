@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiurl: 'https://estoque.sgcon.xyz/api',
 };
