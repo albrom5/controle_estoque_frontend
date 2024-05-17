@@ -1,3 +1,0 @@
---para rodar a aplicação da Univesp local
-
-set NODE_OPTIONS=--openssl-legacy-provider
