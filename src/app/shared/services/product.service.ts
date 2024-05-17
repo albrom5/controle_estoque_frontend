@@ -24,7 +24,7 @@ export class ProductService {
   }
 
   createProduct(product: IProduct): Observable<IProduct> {
-    return this.http.post<IProduct>(`${environment.apiurl}/products`, product);
+    return this.http.post<IProduct>(`${environment.apiurl}/produto/novo`, product);
   }
 
   readProduct(): Observable<any> {
@@ -32,17 +32,17 @@ export class ProductService {
   }
 
   readById(id: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`${environment.apiurl}/products/${id}`);
+    return this.http.get<IProduct>(`${environment.apiurl}/produto/${id}`);
   }
 
   update(product: IProduct, id: string): Observable<IProduct> {
-    return this.http.put<IProduct>(
-      `${environment.apiurl}/products/${id}`,
+    return this.http.patch<IProduct>(
+      `${environment.apiurl}/produto/${id}`,
       product
     );
   }
 
   delete(id: string): Observable<IProduct> {
-    return this.http.delete<IProduct>(`${environment.apiurl}/products/${id}`);
+    return this.http.delete<IProduct>(`${environment.apiurl}/produto/${id}`);
   }
 }

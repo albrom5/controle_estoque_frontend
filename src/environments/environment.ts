@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  // apiurl: 'http://localhost:3001',
+  // apiurl: 'http://127.0.0.1:8000/api',
   apiurl: 'https://estoque.sgcon.xyz/api',
 };
 /*

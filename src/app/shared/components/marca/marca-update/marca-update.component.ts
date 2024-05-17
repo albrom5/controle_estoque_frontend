@@ -31,7 +31,7 @@ export class MarcaUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.marcaId = this.route.snapshot.paramMap.get('id');
     this.marcaService.readById(this.marcaId).subscribe((marca) => {
-      this.marcaForm.controls['name'].setValue(marca.name);
+      this.marcaForm.controls['nome'].setValue(marca.nome);
     });
   }
 

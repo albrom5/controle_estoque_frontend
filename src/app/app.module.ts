@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './shared/services/product.service';
 import { MarcaService } from './shared/services/marca.service';
 import { ArmazemService } from './shared/services/armazem.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import {MatSelectModule} from '@angular/material/select';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -85,6 +88,9 @@ registerLocaleData(localePt);
     ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
+    MatFormFieldModule, 
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [
     authInterceptorProvider,

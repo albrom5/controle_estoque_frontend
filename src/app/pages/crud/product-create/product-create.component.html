@@ -2,13 +2,13 @@
   <mat-card-title> Cadastrar o produto </mat-card-title>
   <form [formGroup]="productForm">
     <mat-form-field>
-      <input placeholder="Nome" matInput formControlName="name" name="name" />
+      <input placeholder="Nome" matInput formControlName="nome" name="nome" />
     </mat-form-field>
     <p>
       <span
         *ngIf="
-          productFormControl.name.touched &&
-          productFormControl.name.errors?.required
+          productFormControl.nome.touched &&
+          productFormControl.nome.errors?.required
         "
         class="text-danger"
       >
@@ -17,42 +17,52 @@
     </p>
 
     <mat-form-field>
-      <input
-        placeholder="Quantidade"
-        matInput
-        formControlName="price"
-        name="price"
-      />
+      <mat-select
+        placeholder="Unidade de Medida"
+        formControlName="unidade_medida_id" name="unidade_medida_id"
+      >
+        <mat-option
+          *ngFor="let u of unidadeList"
+          [value]="u.id"
+        >
+          {{u.nome}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <p>
       <span
         *ngIf="
-          productFormControl.price.touched &&
-          productFormControl.price.errors?.required
+          productFormControl.unidade_medida_id.touched &&
+          productFormControl.unidade_medida_id.errors?.required
         "
         class="text-danger"
       >
-        Quantidade obrigatória
+        Unidade de Medida obrigatória
       </span>
     </p>
 
     <mat-form-field>
-      <input
-        placeholder="Data de Validade"
-        matInput
-        formControlName="validade"
-        name="validade"
-      />
+      <mat-select
+        placeholder="Marca"
+        formControlName="marca_id" name="marca_id"
+      >
+        <mat-option
+          *ngFor="let m of marcaList"
+          [value]="m.uuid"
+        >
+          {{m.nome}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <p>
       <span
         *ngIf="
-          productFormControl.validade.touched &&
-          productFormControl.validade.errors?.required
+          productFormControl.marca_id.touched &&
+          productFormControl.marca_id.errors?.required
         "
         class="text-danger"
       >
-        Data de validade obrigatória
+        Marca obrigatória
       </span>
     </p>
 

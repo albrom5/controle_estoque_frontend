@@ -17,19 +17,19 @@
       <td mat-cell *matCellDef="let product">{{ product.nome }}</td>
     </ng-container>
 
-    <!-- Price Column -->
-    <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef>Quantidade</th>
+    <!-- Unidade Medida Column -->
+    <ng-container matColumnDef="unidade_medida">
+      <th mat-header-cell *matHeaderCellDef>Unidade de Medida</th>
       <td mat-cell *matCellDef="let product">
-        {{ product.price }}
+        {{ product.unidade_medida_sigla }}
       </td>
     </ng-container>
 
-    <!-- Validade Column -->
-    <ng-container matColumnDef="validade">
-      <th mat-header-cell *matHeaderCellDef>Validade</th>
+    <!-- Marca Column -->
+    <ng-container matColumnDef="marca">
+      <th mat-header-cell *matHeaderCellDef>Marca</th>
       <td mat-cell *matCellDef="let product">
-        {{ product.validade }}
+        {{ product.marca }}
       </td>
     </ng-container>
 
@@ -41,14 +41,14 @@
         <a
           mat-icon-button
           class="edit"
-          routerLink="/product/update/{{ product.id }}"
+          routerLink="/product/update/{{ product.uuid }}"
         >
           <mat-icon> edit </mat-icon>
         </a>
         <a
           mat-icon-button
           class="delete"
-          routerLink="/product/delete/{{ product.id }}"
+          routerLink="/product/delete/{{ product.uuid }}"
         >
           <mat-icon> delete </mat-icon>
         </a>

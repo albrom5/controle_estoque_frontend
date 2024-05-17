@@ -8,13 +8,13 @@
       <!-- Id Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>Id.</th>
-        <td mat-cell *matCellDef="let marca">{{ marca.id }}</td>
+        <td mat-cell *matCellDef="let marca">{{ marca.uuid }}</td>
       </ng-container>
   
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Nome da marca</th>
-        <td mat-cell *matCellDef="let marca">{{ marca.name }}</td>
+        <td mat-cell *matCellDef="let marca">{{ marca.nome }}</td>
       </ng-container>
   
       
@@ -25,14 +25,14 @@
           <a
             mat-icon-button
             class="edit"
-            routerLink="/marca/update/{{ marca.id }}"
+            routerLink="/marca/update/{{ marca.uuid }}"
           >
             <mat-icon> edit </mat-icon>
           </a>
           <a
             mat-icon-button
             class="delete"
-            routerLink="/marca/delete/{{ marca.id }}"
+            routerLink="/marca/delete/{{ marca.uuid }}"
           >
             <mat-icon> delete </mat-icon>
           </a>

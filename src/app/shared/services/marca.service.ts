@@ -27,8 +27,8 @@ export class MarcaService {
     return this.http.post<IMarca>(`${environment.apiurl}/marca`, marca);
   }
 
-  readMarca(): Observable<IMarca[]> {
-    return this.http.get<IMarca[]>(`${environment.apiurl}/marca`);
+  readMarca(): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/marcas`);
   }
 
   readById(id: string): Observable<IMarca> {

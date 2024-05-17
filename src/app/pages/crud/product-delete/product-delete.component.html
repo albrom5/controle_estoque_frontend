@@ -5,30 +5,38 @@
       <input
         placeholder="Nome"
         matInput
-        formControlName="name"
-        name="name"
+        formControlName="nome"
+        name="nome"
         readonly=""
       />
     </mat-form-field>
 
     <mat-form-field>
-      <input
-        placeholder="Quantidade"
-        matInput
-        formControlName="price"
-        name="price"
-        readonly=""
-      />
+      <mat-select
+        placeholder="Unidade de Medida"
+        formControlName="unidade_medida_id" name="unidade_medida_id"
+      >
+        <mat-option
+          *ngFor="let u of unidadeList"
+          [value]="u.id"
+        >
+          {{u.nome}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field>
-      <input
-        placeholder="Validade"
-        matInput
-        formControlName="validade"
-        name="validade"
-        readonly=""
-      />
+      <mat-select
+        placeholder="Marca"
+        formControlName="marca_id" name="marca_id"
+      >
+        <mat-option
+          *ngFor="let m of marcaList"
+          [value]="m.uuid"
+        >
+          {{m.nome}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
   </form>

@@ -2,25 +2,35 @@
   <mat-card-title> Alterar o produto </mat-card-title>
   <form [formGroup]="productForm">
     <mat-form-field>
-      <input placeholder="Nome" matInput formControlName="name" name="name" />
+      <input placeholder="Nome" matInput formControlName="nome" name="nome" />
     </mat-form-field>
 
     <mat-form-field>
-      <input
-        placeholder="Quantidade"
-        matInput
-        formControlName="price"
-        name="price"
-      />
+      <mat-select
+        placeholder="Unidade de Medida"
+        formControlName="unidade_medida_id" name="unidade_medida_id"
+      >
+        <mat-option
+          *ngFor="let u of unidadeList"
+          [value]="u.id"
+        >
+          {{u.nome}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field>
-      <input
-        placeholder="Validade"
-        matInput
-        formControlName="validade"
-        name="validade"
-      />
+      <mat-select
+        placeholder="Marca"
+        formControlName="marca_id" name="marca_id"
+      >
+        <mat-option
+          *ngFor="let m of marcaList"
+          [value]="m.uuid"
+        >
+          {{m.nome}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
   </form>
@@ -29,7 +39,6 @@
     mat-raised-button
     color="primary"
     (click)="updateProduct()"
-    [disabled]="productForm.invalid"
   >
     Alterar
   </button>

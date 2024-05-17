@@ -1,4 +1,4 @@
 export interface IMarca {
-  id?: number;
-  name: string;
+  uuid?: number;
+  nome: string;
 }

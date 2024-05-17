@@ -18,15 +18,15 @@ export class MarcaReadComponent implements OnInit {
 
   ngOnInit(): void {
     this.marcaService.readMarca().subscribe((marcas) => {
-      this.marcas = marcas;
+      this.marcas = marcas['lista'];
       this.sortMarcasAlphabetically();
 
     });
   
   }
 
-sortMarcasAlphabetically(): void {
-    this.marcas.sort((a, b) => a.name.localeCompare(b.name));
+  sortMarcasAlphabetically(): void {
+    this.marcas.sort((a, b) => a.nome.localeCompare(b.nome));
   }
 
 

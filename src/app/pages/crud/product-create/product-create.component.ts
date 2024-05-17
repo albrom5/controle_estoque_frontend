@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IProduct } from 'src/app/shared/models/iproduct.model';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { MarcaService } from 'src/app/shared/services/marca.service';
+import { UnidadeMedidaService } from 'src/app/shared/services/unidade-medida.service';
+import { IMarca } from 'src/app/shared/models/imarca.model'; 
+import { IUnidadeMedida } from 'src/app/shared/models/unidade-medida';
 
 @Component({
   selector: 'app-product-create',
@@ -15,12 +19,14 @@ export class ProductCreateComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private marcaService: MarcaService,
+    private unidadeService: UnidadeMedidaService
   ) {
     this.productForm = fb.group({
-      name: ['', Validators.required],
-      price: ['', Validators.required],
-      validade: ['', Validators.required],
+      nome: ['', Validators.required],
+      unidade_medida_id: ['', Validators.required],
+      marca_id: ['', Validators.required],
     });
   }
 
@@ -32,8 +38,15 @@ export class ProductCreateComponent implements OnInit {
   get productFormControl() {
     return this.productForm.controls;
   }
+  
+  marcaList: IMarca[];
+  unidadeList: IUnidadeMedida[];
 
-  ngOnInit(): void {}
+  ngOnInit(){
+    this.marcaService.readMarca().subscribe(data => {this.marcaList = data['lista']});
+    this.unidadeService.readUnidade().subscribe(data => {this.unidadeList = data['lista']});
+
+  }
 
   createProduct(): void {
     this.productService.createProduct(this.product).subscribe(() => {
