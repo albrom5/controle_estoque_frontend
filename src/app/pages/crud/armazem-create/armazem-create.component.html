@@ -1,20 +1,50 @@
 <mat-card class="mat-elevation-z4">
-    <mat-card-title> Cadastrar Armazem </mat-card-title>
+    <mat-card-title> Cadastrar Local de Armazenagem </mat-card-title>
     <form [formGroup]="armazemForm">
       <mat-form-field>
-        <input placeholder="Nome do Armazem" matInput formControlName="name" name="name" />
+        <input placeholder="Nome" matInput formControlName="nome" name="nome" />
       </mat-form-field>
       <p>
         <span
           *ngIf="
-            armazemFormControl.name.touched &&
-            armazemFormControl.name.errors?.required
+            armazemFormControl.nome.touched &&
+            armazemFormControl.nome.errors?.required
           "
           class="text-danger"
         >
-          O nome do armazem é obrigatório
+          O nome é obrigatório
         </span>
       </p>
+
+      <mat-form-field>
+        <input placeholder="Endereço" matInput formControlName="logradouro" name="logradouro" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input placeholder="Número" matInput formControlName="numero" name="numero" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input placeholder="Complemento" matInput formControlName="complemento" name="complemento" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select
+          placeholder="Cidade"
+          formControlName="municipio_id" name="municipio_id"
+        >
+          <mat-option
+            *ngFor="let m of municipioList"
+            [value]="m.id"
+          >
+            {{m.nome}}/{{m.uf}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input placeholder="CEP" matInput formControlName="cep" name="cep"  maxlength="8"/>
+      </mat-form-field>
   
     </form>
   
@@ -24,7 +54,7 @@
       (click)="createArmazem()"
       [disabled]="armazemForm.invalid"
     >
-      Cadastrar armazem
+      Cadastrar local de armazenagem
     </button>
     <button mat-raised-button (click)="cancel()">Cancelar</button>
   </mat-card>

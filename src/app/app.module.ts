@@ -45,6 +45,7 @@ import { EstoqueDeleteComponent } from './pages/crud/estoque-delete/estoque-dele
 import { EstoqueReadComponent } from './pages/crud/estoque-read/estoque-read.component';
 import { EstoqueUpdateComponent } from './shared/components/estoque/estoque-update/estoque-update.component';
 import { authInterceptorProvider } from './shared/helpers/auth.interceptor';
+import { EstoqueMovimentosComponent } from './pages/crud/estoque-movimentos/estoque-movimentos.component';
 
 registerLocaleData(localePt);
 
@@ -76,7 +77,8 @@ registerLocaleData(localePt);
     EstoqueCreateComponent,
     EstoqueDeleteComponent,
     EstoqueReadComponent,
-    EstoqueUpdateComponent
+    EstoqueUpdateComponent,
+    EstoqueMovimentosComponent
   ],
   imports: [
     BrowserModule,

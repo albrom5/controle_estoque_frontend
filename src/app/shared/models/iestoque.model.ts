@@ -1,5 +1,5 @@
 export interface IEstoque {
-  id?: string,
+  uuid?: string,
   armazem_uuid: string;
   armazem_nome: string;
   produto_uuid: string;
@@ -9,4 +9,5 @@ export interface IEstoque {
   empresa: string;
   quantidade: string;
   preco: string;
+  movimentos: []
 }

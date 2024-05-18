@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EstoqueService } from 'src/app/shared/services/estoque.service';
+import { IProduct } from 'src/app/shared/models/iproduct.model';
+import { ProductService } from 'src/app/shared/services/product.service';
+import { IArmazem } from 'src/app/shared/models/iarmazem.model';
+import { ArmazemService } from 'src/app/shared/services/armazem.service';
+import { IEstoque } from 'src/app/shared/models/iestoque.model';
 
 @Component({
   selector: 'app-estoque-delete',
@@ -11,27 +16,21 @@ import { EstoqueService } from 'src/app/shared/services/estoque.service';
 export class EstoqueDeleteComponent implements OnInit {
   estoqueId: string;
 
-  estoqueForm: FormGroup;
-
-  get productFormControl() {
-    return this.estoqueForm.controls;
-  }
-
   constructor(
     private estoqueService: EstoqueService,
+    private produtoService: ProductService,
+    private armazemService: ArmazemService,
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder
-  ) {
-    this.estoqueForm = fb.group({
-      name: ['', Validators.required],
-    });
-  }
+    ) {
+    }
 
+  estoque: IEstoque;
+  
   ngOnInit(): void {
     this.estoqueId = this.route.snapshot.paramMap.get('id');
     this.estoqueService.readById(this.estoqueId).subscribe((estoque) => {
-      this.estoqueForm.controls['produto_nome'].setValue(estoque.produto_nome);
+      this.estoque = estoque
     });
   } 
 

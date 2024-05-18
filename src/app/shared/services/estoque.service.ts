@@ -23,26 +23,27 @@ export class EstoqueService {
     });
   }
 
-  createEstoque(armazem: IEstoque): Observable<IEstoque> {
-    return this.http.post<IEstoque>(`${environment.apiurl}/estoque`, armazem);
+  createEstoque(estoque: IEstoque): Observable<IEstoque> {
+    return this.http.post<IEstoque>(`${environment.apiurl}/estoque/novo`, estoque);
   }
 
-  readEstoque(): Observable<IEstoque[]> {
-    return this.http.get<IEstoque[]>(`${environment.apiurl}/estoque`);
+  readEstoque(): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/itens_estoque`);
   }
 
   readById(id: string): Observable<IEstoque> {
     return this.http.get<IEstoque>(`${environment.apiurl}/estoque/${id}`);
   }
 
-  update(armazem: IEstoque, id: string): Observable<IEstoque> {
-    return this.http.put<IEstoque>(
+  update(estoque: IEstoque, id: string): Observable<IEstoque> {
+    return this.http.patch<IEstoque>(
       `${environment.apiurl}/estoque/${id}`,
-      armazem
+      estoque
     );
   }
 
   delete(id: string): Observable<IEstoque> {
     return this.http.delete<IEstoque>(`${environment.apiurl}/estoque/${id}`);
   }
+  
 }

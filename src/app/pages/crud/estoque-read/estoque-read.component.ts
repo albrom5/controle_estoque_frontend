@@ -18,14 +18,14 @@ export class EstoqueReadComponent implements OnInit {
 
   ngOnInit(): void {
     this.estoqueService.readEstoque().subscribe((estoques) => {
-      this.estoques = estoques;
+      this.estoques = estoques['lista'];
       this.sortEstoquesAlphabetically();
 
     });
   
   }
 
-sortEstoquesAlphabetically(): void {
+  sortEstoquesAlphabetically(): void {
     this.estoques.sort((a, b) => a.produto_nome.localeCompare(b.produto_nome));
   }
 

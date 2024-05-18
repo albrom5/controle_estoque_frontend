@@ -24,11 +24,11 @@ export class ArmazemService {
   }
 
   createArmazem(armazem: IArmazem): Observable<IArmazem> {
-    return this.http.post<IArmazem>(`${environment.apiurl}/armazem`, armazem);
+    return this.http.post<IArmazem>(`${environment.apiurl}/armazem/novo`, armazem);
   }
 
-  readArmazem(): Observable<IArmazem[]> {
-    return this.http.get<IArmazem[]>(`${environment.apiurl}/armazem`);
+  readArmazem(): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/armazens`);
   }
 
   readById(id: string): Observable<IArmazem> {
@@ -36,7 +36,7 @@ export class ArmazemService {
   }
 
   update(armazem: IArmazem, id: string): Observable<IArmazem> {
-    return this.http.put<IArmazem>(
+    return this.http.patch<IArmazem>(
       `${environment.apiurl}/armazem/${id}`,
       armazem
     );

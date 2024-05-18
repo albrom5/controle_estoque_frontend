@@ -1,6 +1,6 @@
 <div>
     <span>
-      <h1>Armazens cadastrados</h1>
+      <h1>Locais de armazenagem cadastrados</h1>
     </span>
   
    
@@ -8,16 +8,45 @@
       <!-- Id Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>Id.</th>
-        <td mat-cell *matCellDef="let armazem">{{ armazem.id }}</td>
+        <td mat-cell *matCellDef="let armazem">{{ armazem.uuid }}</td>
       </ng-container>
   
       <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nome do armazem</th>
-        <td mat-cell *matCellDef="let armazem">{{ armazem.name }}</td>
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let armazem">{{ armazem.nome }}</td>
+      </ng-container>
+
+      <!-- Logradouro Column -->
+      <ng-container matColumnDef="logradouro">
+        <th mat-header-cell *matHeaderCellDef>Logradouro</th>
+        <td mat-cell *matCellDef="let armazem">{{ armazem.logradouro }}</td>
+      </ng-container>
+      
+      <!-- Numero Column -->
+      <ng-container matColumnDef="numero">
+        <th mat-header-cell *matHeaderCellDef>Numero</th>
+        <td mat-cell *matCellDef="let armazem">{{ armazem.numero }}</td>
+      </ng-container>
+
+      <!-- Complemento Column -->
+      <ng-container matColumnDef="complemento">
+        <th mat-header-cell *matHeaderCellDef>Complemento</th>
+        <td mat-cell *matCellDef="let armazem">{{ armazem.complemento }}</td>
+      </ng-container>
+
+      <!-- Municipio Column -->
+      <ng-container matColumnDef="municipio">
+        <th mat-header-cell *matHeaderCellDef>Municipio</th>
+        <td mat-cell *matCellDef="let armazem">{{ armazem.municipio }}</td>
       </ng-container>
   
-      
+      <!-- CEP Column -->
+      <ng-container matColumnDef="cep">
+        <th mat-header-cell *matHeaderCellDef>CEP</th>
+        <td mat-cell *matCellDef="let armazem">{{ armazem.cep }}</td>
+      </ng-container>
+
       <!-- Action Column -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
@@ -25,14 +54,14 @@
           <a
             mat-icon-button
             class="edit"
-            routerLink="/armazem/update/{{ armazem.id }}"
+            routerLink="/armazem/update/{{ armazem.uuid }}"
           >
             <mat-icon> edit </mat-icon>
           </a>
           <a
             mat-icon-button
             class="delete"
-            routerLink="/armazem/delete/{{ armazem.id }}"
+            routerLink="/armazem/delete/{{ armazem.uuid }}"
           >
             <mat-icon> delete </mat-icon>
           </a>

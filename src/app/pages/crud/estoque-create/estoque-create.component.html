@@ -1,31 +1,96 @@
 <mat-card class="mat-elevation-z4">
-    <mat-card-title> Cadastrar Estoque </mat-card-title>
-    <form [formGroup]="estoqueForm">
-      <mat-form-field>
-        <input placeholder="Nome do Armazem" matInput formControlName="name" name="name" />
-      </mat-form-field>
-      <p>
-        <span
-          *ngIf="
-            estoqueFormControl.name.touched &&
-            estoqueFormControl.name.errors?.required
-          "
-          class="text-danger"
+  <mat-card-title> Cadastrar Item de Estoque </mat-card-title>
+  <form [formGroup]="estoqueForm">
+    <mat-form-field>
+      <mat-select
+        placeholder="Local de Armazenagem"
+        formControlName="armazem_id" name="armazem_id"
+      >
+        <mat-option
+          *ngFor="let a of armazemList"
+          [value]="a.uuid"
         >
-          O nome do armazem é obrigatório
-        </span>
-      </p>
-  
-    </form>
-  
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="createEstoque()"
-      [disabled]="estoqueForm.invalid"
-    >
-      Cadastrar estoque
-    </button>
-    <button mat-raised-button (click)="cancel()">Cancelar</button>
-  </mat-card>
+          {{a.nome}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          estoqueFormControl.armazem_id.touched &&
+          estoqueFormControl.armazem_id.errors?.required
+        "
+        class="text-danger"
+      >
+        A seleção do local de armazenagem é obrigatória
+      </span>
+    </p>
+
+    <mat-form-field>
+      <mat-select
+        placeholder="Produto"
+        formControlName="produto_id" name="produto_id"
+      >
+        <mat-option
+          *ngFor="let p of produtoList"
+          [value]="p.uuid"
+        >
+          {{p.nome}} {{p.marca}} ({{p.unidade_medida_sigla}})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          estoqueFormControl.armazem_id.touched &&
+          estoqueFormControl.armazem_id.errors?.required
+        "
+        class="text-danger"
+      >
+        A seleção do produto é obrigatória
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input type="number" placeholder="Quantidade" matInput formControlName="quantidade" name="quantidade" />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          estoqueFormControl.quantidade.touched &&
+          estoqueFormControl.quantidade.errors?.required
+        "
+        class="text-danger"
+      >
+        Quantidade obrigatória
+      </span>
+    </p>
+
+    <mat-form-field>
+      <input type="number" placeholder="Preço" matInput formControlName="preco" name="preco" />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          estoqueFormControl.preco.touched &&
+          estoqueFormControl.preco.errors?.required
+        "
+        class="text-danger"
+      >
+        Preço obrigatório
+      </span>
+    </p>
+
+  </form>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="createEstoque()"
+    [disabled]="estoqueForm.invalid"
+  >
+    Cadastrar item de estoque
+  </button>
+  <button mat-raised-button (click)="cancel()">Cancelar</button>
+</mat-card>
   

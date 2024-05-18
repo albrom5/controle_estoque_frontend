@@ -22,6 +22,7 @@ import { EstoqueCrudComponent } from '../crud/estoque-crud/estoque-crud.componen
 import { EstoqueCreateComponent } from '../crud/estoque-create/estoque-create.component';
 import { EstoqueDeleteComponent } from '../crud/estoque-delete/estoque-delete.component';
 import { EstoqueUpdateComponent } from '../../shared/components/estoque/estoque-update/estoque-update.component';
+import { EstoqueMovimentosComponent } from '../crud/estoque-movimentos/estoque-movimentos.component';
 
 import { HomeComponent } from './home.component';
 
@@ -31,10 +32,10 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
 
-  { path: 'products', component: ProductReadComponent },
-  { path: 'product/create', component: ProductCreateComponent },
-  { path: 'product/update/:id', component: ProductUpdateComponent },
-  { path: 'product/delete/:id', component: ProductDeleteComponent },
+  { path: 'produtos', component: CrudComponent },
+  { path: 'produto/create', component: ProductCreateComponent },
+  { path: 'produto/update/:id', component: ProductUpdateComponent },
+  { path: 'produto/delete/:id', component: ProductDeleteComponent },
 
   { path: 'marca', component: MarcaCrudComponent },
   { path: 'marca/create', component: MarcaCreateComponent },
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'estoque/create', component: EstoqueCreateComponent },
   { path: 'estoque/update/:id', component: EstoqueUpdateComponent },
   { path: 'estoque/delete/:id', component: EstoqueDeleteComponent },
+  { path: 'estoque/movimentos/:id', component: EstoqueMovimentosComponent },
 ];
 
 @NgModule({

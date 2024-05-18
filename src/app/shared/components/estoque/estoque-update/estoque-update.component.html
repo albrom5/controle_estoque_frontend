@@ -1,30 +1,21 @@
 <mat-card class="mat-elevation-z4">
-    <mat-card-title> Alterar o estoque </mat-card-title>
+    <mat-card-title> Alterar preço do item de estoque - {{ estoque.armazem_nome }} - {{estoque.produto_nome}} {{estoque.produto_marca}}({{estoque.produto_unidade_medida}}) </mat-card-title>
     <form [formGroup]="estoqueForm">
 
       <mat-form-field>
-        <input placeholder="Nome do armazem" matInput formControlName="armazem_nome" name="armazem_nome" />
+        <input type="number" placeholder="Preço" matInput formControlName="preco" name="preco" />
       </mat-form-field>
-
-      <mat-form-field>
-        <input placeholder="Nome do Produto" matInput formControlName="produto_nome" name="produto_nome" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <input placeholder="Unidade de medida" matInput formControlName="produto_unidade_medida" name="produto_unidade_medida" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <input placeholder="Marca" matInput formControlName="produto_marca" name="produto_marca" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <input placeholder="Quantidade" matInput formControlName="quantidade" name="quantidade" />
-      </mat-form-field>
-
-      <mat-form-field>
-        <input placeholder="Preço" matInput formControlName="preco" name="preco" />
-      </mat-form-field>
+      <p>
+        <span
+          *ngIf="
+            estoqueFormControl.preco.touched &&
+            estoqueFormControl.preco.errors?.required
+          "
+          class="text-danger"
+        >
+          Preço obrigatório
+        </span>
+      </p>
 
     </form>
   

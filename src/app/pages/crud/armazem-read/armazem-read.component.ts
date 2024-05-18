@@ -12,24 +12,20 @@ import { ArmazemService } from 'src/app/shared/services/armazem.service';
 export class ArmazemReadComponent implements OnInit {
   armazens!: IArmazem[];
 
-  displayedColumns = ['id', 'name','action'];
+  displayedColumns = ['nome', 'logradouro', 'numero', 'complemento', 'municipio', 'cep', 'action'];
 
   constructor(private armazemService: ArmazemService) {}
 
   ngOnInit(): void {
     this.armazemService.readArmazem().subscribe((armazens) => {
-      this.armazens = armazens;
+      this.armazens = armazens['lista'];
       this.sortArmazensAlphabetically();
 
     });
   
   }
 
-sortArmazensAlphabetically(): void {
-    this.armazens.sort((a, b) => a.name.localeCompare(b.name));
+  sortArmazensAlphabetically(): void {
+    this.armazens.sort((a, b) => a.nome.localeCompare(b.nome));
   }
-
-
-
-
 }
