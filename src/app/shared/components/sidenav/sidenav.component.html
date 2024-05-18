@@ -47,6 +47,14 @@
           </a>
         </mat-list-item>
       </mat-nav-list>
+      <mat-nav-list *ngIf="!isLoggedIn" class="list">
+        <mat-list-item>
+          <a routerLink="/login">
+            <mat-icon> login</mat-icon>
+            Entrar
+          </a>
+        </mat-list-item>
+      </mat-nav-list>
       <mat-nav-list *ngIf="isLoggedIn" class="list">
         <mat-list-item>
           <a (click)="logout()">
