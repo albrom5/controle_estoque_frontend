@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
+      this.router.navigate(['/home'])
     }
   }
 
@@ -40,11 +41,12 @@ export class LoginComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.reloadPage();
+        window.location.reload();
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = 'Credenciais inválidas, verifique os dados e tente novamente.';
         this.isLoginFailed = true;
+        console.log(err.error['detail'])
       }
     });
     

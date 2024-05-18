@@ -34,4 +34,8 @@ export class StorageService {
 
     return false;
   }
+
+  public logout(): void {
+    window.sessionStorage.removeItem(USER_KEY);
+  }
 }
