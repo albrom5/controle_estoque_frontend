@@ -18,6 +18,7 @@ import { ArmazemService } from './shared/services/armazem.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatSelectModule} from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -92,7 +93,8 @@ registerLocaleData(localePt);
     MaterialModule,
     MatFormFieldModule, 
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule
   ],
   providers: [
     authInterceptorProvider,

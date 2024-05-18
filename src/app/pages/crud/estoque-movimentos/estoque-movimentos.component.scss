@@ -1,6 +1,7 @@
 table {
     width: 100%;
     margin-top: 30px;
+    text-align: center;
   }
   
   .edit {
@@ -9,5 +10,9 @@ table {
   
   .delete {
     color: #ed5519;
+  }
+
+  .mat-header-cell {
+    text-align: center;
   }
   
