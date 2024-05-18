@@ -24,7 +24,7 @@ export class MarcaUpdateComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.marcaForm = fb.group({
-      name: ['', Validators.required],
+      nome: ['', Validators.required],
     });
   }
 

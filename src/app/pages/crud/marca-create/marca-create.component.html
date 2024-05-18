@@ -2,13 +2,13 @@
     <mat-card-title> Cadastrar Marca </mat-card-title>
     <form [formGroup]="marcaForm">
       <mat-form-field>
-        <input placeholder="Nome da Marca" matInput formControlName="name" name="name" />
+        <input placeholder="Nome da Marca" matInput formControlName="nome" name="nome" />
       </mat-form-field>
       <p>
         <span
           *ngIf="
-            marcaFormControl.name.touched &&
-            marcaFormControl.name.errors?.required
+            marcaFormControl.nome.touched &&
+            marcaFormControl.nome.errors?.required
           "
           class="text-danger"
         >

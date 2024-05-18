@@ -1,1 +1,26 @@
-<p>marca-delete works!</p>
+<mat-card class="mat-elevation-z4">
+    <mat-card-title> Excluir a marca </mat-card-title>
+    <form [formGroup]="marcaForm">
+      <mat-form-field>
+        <input
+          placeholder="Nome"
+          matInput
+          formControlName="nome"
+          name="nome"
+          readonly=""
+        />
+      </mat-form-field>
+      
+    </form>
+  
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="deleteMarca()"
+      [disabled]="marcaForm.invalid"
+    >
+      Excluir
+    </button>
+    <button mat-raised-button (click)="cancel()">Cancelar</button>
+  </mat-card>
+  

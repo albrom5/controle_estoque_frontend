@@ -60,11 +60,11 @@ export class ProductUpdateComponent implements OnInit {
           'Produto atualizado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud']);
+        this.router.navigate(['/produtos']);
       });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud']);
+    this.router.navigate(['/produtos']);
   }
 }

@@ -57,11 +57,11 @@ export class ProductDeleteComponent implements OnInit {
         'Produto excluído com sucesso!',
         'backsnack'
       );
-      this.router.navigate(['/crud']);
+      this.router.navigate(['/produtos']);
     });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud']);
+    this.router.navigate(['/produtos']);
   }
 }

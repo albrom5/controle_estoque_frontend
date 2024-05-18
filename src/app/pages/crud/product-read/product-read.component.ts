@@ -12,7 +12,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 export class ProductReadComponent implements OnInit {
   products!: IProduct[];
 
-  displayedColumns = ['id', 'name', 'unidade_medida', 'marca', 'action'];
+  displayedColumns = ['name', 'unidade_medida', 'marca', 'action'];
 
   constructor(private productService: ProductService) {}
 

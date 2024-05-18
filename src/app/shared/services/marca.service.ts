@@ -24,7 +24,7 @@ export class MarcaService {
   }
 
   createMarca(marca: IMarca): Observable<IMarca> {
-    return this.http.post<IMarca>(`${environment.apiurl}/marca`, marca);
+    return this.http.post<IMarca>(`${environment.apiurl}/marca/nova`, marca);
   }
 
   readMarca(): Observable<any> {
@@ -36,7 +36,7 @@ export class MarcaService {
   }
 
   update(marca: IMarca, id: string): Observable<IMarca> {
-    return this.http.put<IMarca>(
+    return this.http.patch<IMarca>(
       `${environment.apiurl}/marca/${id}`,
       marca
     );

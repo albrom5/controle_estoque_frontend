@@ -18,7 +18,7 @@ export class MarcaCreateComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.marcaForm = fb.group({
-      name: ['', Validators.required],
+      nome: ['', Validators.required],
     });
   }
 
