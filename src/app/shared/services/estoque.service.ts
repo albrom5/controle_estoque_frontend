@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { IEstoque } from '../models/iestoque.model';
 import { environment } from 'src/environments/environment';
+import { Imovimento } from '../models/imovimento';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,12 @@ export class EstoqueService {
     return this.http.get<any>(`${environment.apiurl}/itens_estoque`);
   }
 
+  readEstoquebyArmazem(armazem_id: string): Observable<any> {
+    armazem_id = armazem_id;
+    const query = armazem_id ? {params: new HttpParams().set('armazem_id', armazem_id)} : {};
+    return this.http.get<any>(`${environment.apiurl}/itens_estoque`, query);
+  }
+
   readById(id: string): Observable<IEstoque> {
     return this.http.get<IEstoque>(`${environment.apiurl}/estoque/${id}`);
   }
@@ -45,5 +52,8 @@ export class EstoqueService {
   delete(id: string): Observable<IEstoque> {
     return this.http.delete<IEstoque>(`${environment.apiurl}/estoque/${id}`);
   }
-  
+
+  movimentaEstoque(movimento: Imovimento, estoque_id: string): Observable<IEstoque> {
+    return this.http.post<IEstoque>(`${environment.apiurl}/${estoque_id}/movimento/novo`, movimento);
+  }
 }
