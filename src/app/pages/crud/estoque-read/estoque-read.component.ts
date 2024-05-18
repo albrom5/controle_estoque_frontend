@@ -4,6 +4,8 @@ import { EstoqueService } from 'src/app/shared/services/estoque.service';
 import { IArmazem } from 'src/app/shared/models/iarmazem.model';
 import { ArmazemService } from 'src/app/shared/services/armazem.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogMovimentoEntradaComponent } from '../dialog-movimento-entrada/dialog-movimento-entrada.component';
 
 @Component({
   selector: 'app-estoque-read',
@@ -18,6 +20,7 @@ export class EstoqueReadComponent implements OnInit {
   constructor(
     private estoqueService: EstoqueService,
     private armazemService: ArmazemService,
+    public dialog: MatDialog
   ) {}
 
   armazemList: IArmazem[];
@@ -27,7 +30,6 @@ export class EstoqueReadComponent implements OnInit {
     this.estoqueService.readEstoque().subscribe((estoques) => {
       this.estoques = estoques['lista'];
       this.sortEstoquesAlphabetically();
-
     });
   }
 
@@ -36,7 +38,8 @@ export class EstoqueReadComponent implements OnInit {
   };
 
   selectedArmazem: string = 'all';
-  filterbyArmazem() {
+
+  filterbyArmazem(): void {
     if (this.selectedArmazem === 'all') {
       this.selectedArmazem = '';
     };
@@ -44,6 +47,18 @@ export class EstoqueReadComponent implements OnInit {
       this.estoques = estoques['lista'];
       this.sortEstoquesAlphabetically();
     });
+  }
+
+  entradaEstoqueDialog(estoque_id: string) {
+    const dialogRef = this.dialog.open(
+      DialogMovimentoEntradaComponent, 
+      {data: {'estoque_id': estoque_id}}
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.filterbyArmazem();
+    });    
+    
   }
 
 }

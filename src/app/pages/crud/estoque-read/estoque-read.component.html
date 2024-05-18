@@ -54,14 +54,14 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let estoque">
-          <a
+          <button
             mat-icon-button
             class="add"
             matTooltip="Registrar entrada"
-            (click)="filterbyArmazem()"
+            (click)="entradaEstoqueDialog(estoque.uuid)"
           >
             <mat-icon> arrow_circle_up </mat-icon>
-          </a>
+          </button>
           
           <a
             mat-icon-button

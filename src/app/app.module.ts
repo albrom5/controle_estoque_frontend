@@ -17,9 +17,10 @@ import { MarcaService } from './shared/services/marca.service';
 import { ArmazemService } from './shared/services/armazem.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { MaterialModule } from './shared/material/material.module';
@@ -47,6 +48,8 @@ import { EstoqueReadComponent } from './pages/crud/estoque-read/estoque-read.com
 import { EstoqueUpdateComponent } from './shared/components/estoque/estoque-update/estoque-update.component';
 import { authInterceptorProvider } from './shared/helpers/auth.interceptor';
 import { EstoqueMovimentosComponent } from './pages/crud/estoque-movimentos/estoque-movimentos.component';
+import { DialogMovimentoEntradaComponent } from './pages/crud/dialog-movimento-entrada/dialog-movimento-entrada.component';
+
 
 registerLocaleData(localePt);
 
@@ -79,7 +82,8 @@ registerLocaleData(localePt);
     EstoqueDeleteComponent,
     EstoqueReadComponent,
     EstoqueUpdateComponent,
-    EstoqueMovimentosComponent
+    EstoqueMovimentosComponent,
+    DialogMovimentoEntradaComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +98,9 @@ registerLocaleData(localePt);
     MatFormFieldModule, 
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [
     authInterceptorProvider,
