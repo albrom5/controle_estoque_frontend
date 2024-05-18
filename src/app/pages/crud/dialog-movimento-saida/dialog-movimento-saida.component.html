@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Registrar entrada em estoque</h2>
+<h2 mat-dialog-title>Registrar saída de estoque</h2>
 <mat-dialog-content class="mat-typography">
   <p><strong>Local de armazenagem:</strong> {{ estoque.armazem_nome }}</p>
   <p><strong>Produto:</strong> {{ estoque.produto_nome }} {{ estoque.produto_marca }} ({{ estoque.produto_unidade_medida}})</p>
@@ -18,24 +18,10 @@
         Quantidade obrigatória
       </span>
     </p>
-    <mat-form-field>
-      <input placeholder="Preço Unitário" matInput formControlName="preco" name="preco" />
-    </mat-form-field>
-    <p>
-      <span
-        *ngIf="
-          movimentoFormControl.preco.touched &&
-          movimentoFormControl.preco.errors?.required
-        "
-        class="text-danger"
-      >
-        Preço obrigatório
-      </span>
-    </p>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-raised-button color="primary" (click)="entradaEstoque()">
+  <button mat-raised-button color="primary" (click)="saidaEstoque()">
     Registrar
   </button>
 

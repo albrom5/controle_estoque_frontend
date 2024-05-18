@@ -49,6 +49,7 @@ import { EstoqueUpdateComponent } from './shared/components/estoque/estoque-upda
 import { authInterceptorProvider } from './shared/helpers/auth.interceptor';
 import { EstoqueMovimentosComponent } from './pages/crud/estoque-movimentos/estoque-movimentos.component';
 import { DialogMovimentoEntradaComponent } from './pages/crud/dialog-movimento-entrada/dialog-movimento-entrada.component';
+import { DialogMovimentoSaidaComponent } from './pages/crud/dialog-movimento-saida/dialog-movimento-saida.component';
 
 
 registerLocaleData(localePt);
@@ -83,7 +84,8 @@ registerLocaleData(localePt);
     EstoqueReadComponent,
     EstoqueUpdateComponent,
     EstoqueMovimentosComponent,
-    DialogMovimentoEntradaComponent
+    DialogMovimentoEntradaComponent,
+    DialogMovimentoSaidaComponent
   ],
   imports: [
     BrowserModule,

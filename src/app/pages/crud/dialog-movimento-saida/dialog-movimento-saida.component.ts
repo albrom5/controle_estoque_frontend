@@ -8,11 +8,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IEstoque } from 'src/app/shared/models/iestoque.model';
 
 @Component({
-  selector: 'app-dialog-movimento-entrada',
-  templateUrl: './dialog-movimento-entrada.component.html',
-  styleUrls: ['./dialog-movimento-entrada.component.scss']
+  selector: 'app-dialog-movimento-saida',
+  templateUrl: './dialog-movimento-saida.component.html',
+  styleUrls: ['./dialog-movimento-saida.component.scss']
 })
-export class DialogMovimentoEntradaComponent implements OnInit {
+export class DialogMovimentoSaidaComponent implements OnInit {
   movimentoForm: FormGroup;
 
   constructor(
@@ -20,10 +20,9 @@ export class DialogMovimentoEntradaComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: {'estoque_id': string} 
-  ) { 
+  ) {
     this.movimentoForm = fb.group({
       quantidade: ['', Validators.required],
-      preco: ['', Validators.required],
     });
   }
 
@@ -35,12 +34,12 @@ export class DialogMovimentoEntradaComponent implements OnInit {
   get movimentoFormControl() {
     return this.movimentoForm.controls;
   }
-  entradaEstoque(): void {
+  saidaEstoque(): void {
     const estoque_id = this.data['estoque_id']
-    this.movimento.tipo = 'E'
+    this.movimento.tipo = 'S'
     this.estoqueService.movimentaEstoque(this.movimento, estoque_id).subscribe(() => {
       this.estoqueService.showMessage(
-        'Entrada de estoque resgistrada com sucesso!',
+        'Saída de estoque resgistrada com sucesso!',
         'backsnack'
       );
     });
@@ -55,5 +54,4 @@ export class DialogMovimentoEntradaComponent implements OnInit {
       this.estoque = estoque
     });
   }
-
 }

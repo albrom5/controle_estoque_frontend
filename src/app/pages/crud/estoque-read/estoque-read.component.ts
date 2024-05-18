@@ -6,6 +6,7 @@ import { ArmazemService } from 'src/app/shared/services/armazem.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogMovimentoEntradaComponent } from '../dialog-movimento-entrada/dialog-movimento-entrada.component';
+import { DialogMovimentoSaidaComponent } from '../dialog-movimento-saida/dialog-movimento-saida.component';
 
 @Component({
   selector: 'app-estoque-read',
@@ -56,9 +57,24 @@ export class EstoqueReadComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      this.filterbyArmazem();
-    });    
-    
+      setTimeout(() => {
+        this.filterbyArmazem();
+      }, 500);
+    });
+  }
+
+  saidaEstoqueDialog(estoque_id: string) {
+    const dialogRef = this.dialog.open(
+      DialogMovimentoSaidaComponent, 
+      {data: {'estoque_id': estoque_id}}
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      setTimeout(() => {
+        this.filterbyArmazem();
+      }, 500);
+      
+    });
   }
 
 }
