@@ -5,7 +5,7 @@
   <br>
   <form [formGroup]="movimentoForm">
     <mat-form-field>
-      <input type="number" placeholder="Quantidade" matInput formControlName="quantidade" name="quantidade" />
+      <input type="number" min="0" placeholder="Quantidade" matInput formControlName="quantidade" name="quantidade" />
     </mat-form-field>
     <p>
       <span
@@ -19,7 +19,7 @@
       </span>
     </p>
     <mat-form-field>
-      <input type="number" placeholder="Preço Unitário" matInput formControlName="preco" name="preco" />
+      <input type="number" min="0" placeholder="Preço Unitário" matInput formControlName="preco" name="preco" />
     </mat-form-field>
     <p>
       <span
@@ -38,7 +38,7 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-raised-button color="primary" (click)="entradaEstoque()">
+  <button mat-raised-button color="primary" (click)="entradaEstoque()" [disabled]="movimentoForm.invalid">
     Registrar
   </button>
 
