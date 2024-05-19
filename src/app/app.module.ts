@@ -47,6 +47,7 @@ import { EstoqueDeleteComponent } from './pages/crud/estoque-delete/estoque-dele
 import { EstoqueReadComponent } from './pages/crud/estoque-read/estoque-read.component';
 import { EstoqueUpdateComponent } from './shared/components/estoque/estoque-update/estoque-update.component';
 import { authInterceptorProvider } from './shared/helpers/auth.interceptor';
+import { errorInterceptorProvider } from './shared/helpers/error.interceptor';
 import { EstoqueMovimentosComponent } from './pages/crud/estoque-movimentos/estoque-movimentos.component';
 import { DialogMovimentoEntradaComponent } from './pages/crud/dialog-movimento-entrada/dialog-movimento-entrada.component';
 import { DialogMovimentoSaidaComponent } from './pages/crud/dialog-movimento-saida/dialog-movimento-saida.component';
@@ -106,6 +107,7 @@ registerLocaleData(localePt);
   ],
   providers: [
     authInterceptorProvider,
+    errorInterceptorProvider,
     ProductService,
     {
       provide: LOCALE_ID,

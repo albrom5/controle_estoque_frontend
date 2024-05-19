@@ -28,10 +28,29 @@ export class AuthService {
     );
   }
 
+  refresh(): Observable<any> {
+    const refresh: string = this.getRefreshToken();
+    console.log(refresh)
+    return this.http.post(
+      `${environment.apiurl}/token/refresh`,
+      {
+        refresh
+      },
+      httpOptions
+    );
+  }
+
   getToken() {    
     const auth_user = JSON.parse(localStorage.getItem('auth-user') || '""');
     if (auth_user !== null) {
       return auth_user['access'];
+    }
+  }
+
+  getRefreshToken() {    
+    const auth_user = JSON.parse(localStorage.getItem('auth-user') || '""');
+    if (auth_user !== null) {
+      return auth_user['refresh'];
     }
   }
 

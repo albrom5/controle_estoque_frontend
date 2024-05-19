@@ -37,10 +37,7 @@ export class ProductService {
   // }
 
   createProduct(product: IProduct): Observable<IProduct> {
-    return this.http.post<IProduct>(`${environment.apiurl}/produto/novo`, product)
-    // .pipe(
-    //   catchError(this.handleError)
-    // );
+    return this.http.post<IProduct>(`${environment.apiurl}/produto/novo`, product);
   }
 
   readProduct(): Observable<any> {
