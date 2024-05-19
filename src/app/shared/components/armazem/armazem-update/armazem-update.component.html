@@ -45,6 +45,10 @@
       <mat-form-field>
         <input placeholder="CEP" matInput formControlName="cep" name="cep"  maxlength="8"/>
       </mat-form-field>
+
+      <mat-error>
+        {{ errorMessage }}
+      </mat-error>
     </form>
   
     <button

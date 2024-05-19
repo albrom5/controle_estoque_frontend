@@ -3,10 +3,11 @@ import { IEstoque } from 'src/app/shared/models/iestoque.model';
 import { EstoqueService } from 'src/app/shared/services/estoque.service';
 import { IArmazem } from 'src/app/shared/models/iarmazem.model';
 import { ArmazemService } from 'src/app/shared/services/armazem.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogMovimentoEntradaComponent } from '../dialog-movimento-entrada/dialog-movimento-entrada.component';
 import { DialogMovimentoSaidaComponent } from '../dialog-movimento-saida/dialog-movimento-saida.component';
+import { ProductService } from 'src/app/shared/services/product.service';
+import { IProduct } from 'src/app/shared/models/iproduct.model';
 
 @Component({
   selector: 'app-estoque-read',
@@ -21,17 +22,22 @@ export class EstoqueReadComponent implements OnInit {
   constructor(
     private estoqueService: EstoqueService,
     private armazemService: ArmazemService,
+    private produtoService: ProductService,
     public dialog: MatDialog
   ) {}
 
   armazemList: IArmazem[];
+  produtoList: IProduct[];
+
 
   ngOnInit(): void {
     this.armazemService.readArmazem().subscribe(data => {this.armazemList = data['lista']})
+    this.produtoService.readProduct().subscribe(data => {this.produtoList = data['lista']})
     this.estoqueService.readEstoque().subscribe((estoques) => {
       this.estoques = estoques['lista'];
       this.sortEstoquesAlphabetically();
     });
+    
   }
 
   sortEstoquesAlphabetically(): void {
@@ -39,12 +45,16 @@ export class EstoqueReadComponent implements OnInit {
   };
 
   selectedArmazem: string = 'all';
+  selectedProduto: string = 'all';
 
   filterbyArmazem(): void {
     if (this.selectedArmazem === 'all') {
       this.selectedArmazem = '';
     };
-    this.estoqueService.readEstoquebyArmazem(this.selectedArmazem).subscribe((estoques) => {
+    if (this.selectedProduto === 'all') {
+      this.selectedProduto = '';
+    };
+    this.estoqueService.readEstoquebyArmazem(this.selectedArmazem, this.selectedProduto).subscribe((estoques) => {
       this.estoques = estoques['lista'];
       this.sortEstoquesAlphabetically();
     });

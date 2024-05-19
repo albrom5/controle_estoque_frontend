@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Imovimento } from 'src/app/shared/models/imovimento';
 import { EstoqueService } from 'src/app/shared/services/estoque.service';
@@ -18,12 +18,14 @@ export class DialogMovimentoSaidaComponent implements OnInit {
   constructor(
     private estoqueService: EstoqueService,
     public dialog: MatDialog,
+    private dialogRef: MatDialogRef<DialogMovimentoSaidaComponent>,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: {'estoque_id': string} 
   ) {
     this.movimentoForm = fb.group({
       quantidade: ['', Validators.required],
     });
+    dialogRef.disableClose = true;
   }
 
   get movimento(): Imovimento {
@@ -34,16 +36,24 @@ export class DialogMovimentoSaidaComponent implements OnInit {
   get movimentoFormControl() {
     return this.movimentoForm.controls;
   }
+
+  errorMessage: string;
   saidaEstoque(): void {
     const estoque_id = this.data['estoque_id']
     this.movimento.tipo = 'S'
-    this.estoqueService.movimentaEstoque(this.movimento, estoque_id).subscribe(() => {
-      this.estoqueService.showMessage(
-        'Saída de estoque resgistrada com sucesso!',
-        'backsnack'
-      );
+    this.estoqueService.movimentaEstoque(this.movimento, estoque_id).subscribe({
+      next: data => {
+        this.estoqueService.showMessage(
+          'Saída de estoque resgistrada com sucesso!',
+          'backsnack'
+        );
+        this.dialog.closeAll()
+      },
+      error: err => {
+        this.errorMessage = err.error['detail'];
+      }
     });
-    this.dialog.closeAll()
+    
   }
 
   estoque: IEstoque;

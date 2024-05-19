@@ -32,10 +32,20 @@ export class EstoqueService {
     return this.http.get<any>(`${environment.apiurl}/itens_estoque`);
   }
 
-  readEstoquebyArmazem(armazem_id: string): Observable<any> {
+  readEstoquebyArmazem(armazem_id: string, produto_id: string): Observable<any> {
     armazem_id = armazem_id;
-    const query = armazem_id ? {params: new HttpParams().set('armazem_id', armazem_id)} : {};
-    return this.http.get<any>(`${environment.apiurl}/itens_estoque`, query);
+    produto_id = produto_id;
+    let query = {};
+    if (armazem_id && produto_id) {
+      query = new HttpParams().set('armazem_id', armazem_id).set('produto_id', produto_id)
+    } else if (armazem_id) {
+      query = new HttpParams().set('armazem_id', armazem_id)
+    } else if (produto_id) {
+      query = new HttpParams().set('produto_id', produto_id)
+    } 
+    console.log(query)
+    
+    return this.http.get<any>(`${environment.apiurl}/itens_estoque`, {params: query});
   }
 
   readById(id: string): Observable<IEstoque> {

@@ -22,6 +22,26 @@
         </mat-option>        
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+        placeholder="Filtrar por produto"
+        [(ngModel)]="selectedProduto"
+        (selectionChange)="filterbyArmazem()"
+      >
+        <mat-option
+          [value]="'all'"
+        >
+          Todos
+        </mat-option>
+        <mat-option
+          *ngFor="let p of produtoList"
+          [value]="p.uuid"
+        >
+          {{p.nome}} {{p.marca}} ({{p.unidade_medida_sigla}})
+        </mat-option>        
+      </mat-select>
+    </mat-form-field>
   
     <table mat-table [dataSource]="estoques" class="mat-elevation-z4">
       
