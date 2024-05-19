@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   getToken() {    
-    const auth_user = JSON.parse(sessionStorage.getItem('auth-user') || '""');
+    const auth_user = JSON.parse(localStorage.getItem('auth-user') || '""');
     if (auth_user !== null) {
       return auth_user['access'];
     }

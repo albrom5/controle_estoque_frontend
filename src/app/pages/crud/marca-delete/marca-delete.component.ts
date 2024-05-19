@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MarcaService } from 'src/app/shared/services/marca.service';
+import { IMarca } from 'src/app/shared/models/imarca.model';
 
 @Component({
   selector: 'app-marca-delete',
@@ -12,37 +12,32 @@ import { MarcaService } from 'src/app/shared/services/marca.service';
 export class MarcaDeleteComponent implements OnInit {
   marcaId: string;
 
-  marcaForm: FormGroup;
-
-  get marcaFormControl() {
-    return this.marcaForm.controls;
-  }
-
   constructor(
     private marcaService: MarcaService,
     private router: Router,
-    private route: ActivatedRoute,
-    private fb: FormBuilder
-  ) {
-    this.marcaForm = fb.group({
-      nome: ['', Validators.required],
-    });
-  }
-
+    private route: ActivatedRoute
+  ) {}
+  marca: IMarca
   ngOnInit(): void {
     this.marcaId = this.route.snapshot.paramMap.get('id');
     this.marcaService.readById(this.marcaId).subscribe((marca) => {
-      this.marcaForm.controls['nome'].setValue(marca.nome);
+      this.marca = marca
     });
   }
 
+  errorMessage: string;
   deleteMarca(): void {
-    this.marcaService.delete(this.marcaId).subscribe((marca) => {
-      this.marcaService.showMessage(
-        'Marca excluída com sucesso!',
-        'backsnack'
-      );
-      this.router.navigate(['/marca']);
+    this.marcaService.delete(this.marcaId).subscribe({
+      next: data => {
+        this.marcaService.showMessage(
+          'Marca excluída com sucesso!',
+          'backsnack'
+        );
+        this.router.navigate(['/marca']);
+      },
+      error: err => {
+        this.errorMessage = err.error['detail'];
+      }
     });
   }
 

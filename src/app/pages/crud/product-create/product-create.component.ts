@@ -58,7 +58,6 @@ export class ProductCreateComponent implements OnInit {
           'backsnack'
         );
         this.router.navigate(['/produtos']);
-        console.log(this.product);
       },
       error: err => {
         this.errorMessage = err.error['detail'];

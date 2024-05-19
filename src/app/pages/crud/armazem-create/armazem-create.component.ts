@@ -45,13 +45,20 @@ export class ArmazemCreateComponent implements OnInit {
     this.municipioService.readMunicipio().subscribe(data => {this.municipioList = data['lista']});
   }
 
+  errorMessage: string = '';
+
   createArmazem(): void {
-    this.armazemService.createArmazem(this.armazem).subscribe(() => {
-      this.armazemService.showMessage(
-        'Armazem criado com sucesso!',
-        'backsnack'
-      );
-      this.router.navigate(['/armazem']);
+    this.armazemService.createArmazem(this.armazem).subscribe({
+      next: data => {
+        this.armazemService.showMessage(
+          'Local de armazenagem criado com sucesso!',
+          'backsnack'
+        );
+        this.router.navigate(['/armazem']);
+      },
+      error: err => {
+        this.errorMessage = err.error['detail'];
+      }
     });
   }
 

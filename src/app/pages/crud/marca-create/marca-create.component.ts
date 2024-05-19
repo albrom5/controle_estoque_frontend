@@ -33,14 +33,19 @@ export class MarcaCreateComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  errorMessage: string = '';
   createMarca(): void {
-    this.marcaService.createMarca(this.marca).subscribe(() => {
-      this.marcaService.showMessage(
-        'Marca criada com sucesso!',
-        'backsnack'
-      );
-      this.router.navigate(['/marca']);
-      console.log(this.marca);
+    this.marcaService.createMarca(this.marca).subscribe({
+      next: data => {
+        this.marcaService.showMessage(
+          'Marca criado com sucesso!',
+          'backsnack'
+        );
+        this.router.navigate(['/marca']);
+      },
+      error: err => {
+        this.errorMessage = err.error['detail'];
+      }
     });
   }
 

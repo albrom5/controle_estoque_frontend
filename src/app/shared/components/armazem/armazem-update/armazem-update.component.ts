@@ -51,15 +51,20 @@ export class ArmazemUpdateComponent implements OnInit {
     });
   }
 
+  errorMessage: string = '';
+
   updateArmazem(): void {
-    this.armazemService
-      .update(this.armazemForm.value, this.armazemId)
-      .subscribe((armazem) => {
+    this.armazemService.update(this.armazemForm.value, this.armazemId).subscribe({
+      next: data => {
         this.armazemService.showMessage(
-          'Armazem atualizado com sucesso!',
+          'Local de armazenagem atualizado com sucesso!',
           'backsnack'
         );
         this.router.navigate(['/armazem']);
+      },
+      error: err => {
+        this.errorMessage = err.error['detail'];
+      }
       });
   }
 

@@ -4,9 +4,11 @@
       <mat-form-field>
         <input placeholder="Nome" matInput formControlName="nome" name="nome" />
       </mat-form-field>
-  
-  
     </form>
+
+    <mat-error>
+      {{ errorMessage }}
+    </mat-error>
   
     <button
       mat-raised-button
