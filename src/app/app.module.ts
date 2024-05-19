@@ -51,6 +51,7 @@ import { errorInterceptorProvider } from './shared/helpers/error.interceptor';
 import { EstoqueMovimentosComponent } from './pages/crud/estoque-movimentos/estoque-movimentos.component';
 import { DialogMovimentoEntradaComponent } from './pages/crud/dialog-movimento-entrada/dialog-movimento-entrada.component';
 import { DialogMovimentoSaidaComponent } from './pages/crud/dialog-movimento-saida/dialog-movimento-saida.component';
+import { CreditosComponent } from './pages/creditos/creditos.component';
 
 
 registerLocaleData(localePt);
@@ -86,7 +87,8 @@ registerLocaleData(localePt);
     EstoqueUpdateComponent,
     EstoqueMovimentosComponent,
     DialogMovimentoEntradaComponent,
-    DialogMovimentoSaidaComponent
+    DialogMovimentoSaidaComponent,
+    CreditosComponent
   ],
   imports: [
     BrowserModule,

@@ -24,6 +24,8 @@ import { EstoqueDeleteComponent } from '../crud/estoque-delete/estoque-delete.co
 import { EstoqueUpdateComponent } from '../../shared/components/estoque/estoque-update/estoque-update.component';
 import { EstoqueMovimentosComponent } from '../crud/estoque-movimentos/estoque-movimentos.component';
 
+import { CreditosComponent } from '../creditos/creditos.component';
+
 import { HomeComponent } from './home.component';
 
 import { LoginComponent } from '../crud/login/login.component';
@@ -52,6 +54,9 @@ const routes: Routes = [
   { path: 'estoque/update/:id', component: EstoqueUpdateComponent },
   { path: 'estoque/delete/:id', component: EstoqueDeleteComponent },
   { path: 'estoque/movimentos/:id', component: EstoqueMovimentosComponent },
+
+  { path: 'creditos', component: CreditosComponent },
+
 ];
 
 @NgModule({

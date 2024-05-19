@@ -28,24 +28,32 @@
 
         <mat-list-item>
           <a routerLink="marca">
-            <mat-icon> inventory_2</mat-icon>
+            <mat-icon> sell</mat-icon>
             Marca
           </a>
         </mat-list-item>
 
         <mat-list-item>
           <a routerLink="armazem">
-            <mat-icon> inventory_2</mat-icon>
+            <mat-icon> cottage </mat-icon>
             Armazem
           </a>
         </mat-list-item>
 
         <mat-list-item>
           <a routerLink="estoque">
-            <mat-icon> inventory_2</mat-icon>
+            <mat-icon> assignment_turned_in </mat-icon>
             Estoque
           </a>
         </mat-list-item>
+
+        <mat-list-item>
+          <a routerLink="creditos">
+            <mat-icon> people </mat-icon>
+            Créditos
+          </a>
+        </mat-list-item>
+
       </mat-nav-list>
       <mat-nav-list *ngIf="!isLoggedIn" class="list">
         <mat-list-item>
