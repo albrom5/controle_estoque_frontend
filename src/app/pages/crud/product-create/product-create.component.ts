@@ -48,14 +48,21 @@ export class ProductCreateComponent implements OnInit {
 
   }
 
+  errorMessage: string = '';
+
   createProduct(): void {
-    this.productService.createProduct(this.product).subscribe(() => {
-      this.productService.showMessage(
-        'Produto criado com sucesso!',
-        'backsnack'
-      );
-      this.router.navigate(['/produtos']);
-      console.log(this.product);
+    this.productService.createProduct(this.product).subscribe({
+      next: data => {
+        this.productService.showMessage(
+          'Produto criado com sucesso!',
+          'backsnack'
+        );
+        this.router.navigate(['/produtos']);
+        console.log(this.product);
+      },
+      error: err => {
+        this.errorMessage = err.error['detail'];
+      }
     });
   }
 

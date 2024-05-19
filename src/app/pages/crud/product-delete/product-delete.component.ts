@@ -6,6 +6,7 @@ import { IUnidadeMedida } from 'src/app/shared/models/unidade-medida';
 import { IMarca } from 'src/app/shared/models/imarca.model';
 import { UnidadeMedidaService } from 'src/app/shared/services/unidade-medida.service';
 import { MarcaService } from 'src/app/shared/services/marca.service';
+import { IProduct } from 'src/app/shared/models/iproduct.model';
 
 @Component({
   selector: 'app-product-delete',
@@ -39,25 +40,27 @@ export class ProductDeleteComponent implements OnInit {
   unidadeList: IUnidadeMedida[];
   marcaList: IMarca[];
 
+  produto: IProduct;
 
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('id');
     this.productService.readById(this.productId).subscribe((product) => {
-      this.productForm.controls['nome'].setValue(product.nome);
-      this.productForm.controls['unidade_medida_id'].setValue(product.unidade_medida_id);
-      this.unidadeService.readUnidade().subscribe(data => {this.unidadeList = data['lista']});
-      this.productForm.controls['marca_id'].setValue(product.marca_id);
-      this.marcaService.readMarca().subscribe(data => {this.marcaList = data['lista']});
+      this.produto = product
     });
   }
-
+  errorMessage: string;
   deleteProduct(): void {
-    this.productService.delete(this.productId).subscribe((product) => {
-      this.productService.showMessage(
-        'Produto excluído com sucesso!',
-        'backsnack'
-      );
-      this.router.navigate(['/produtos']);
+    this.productService.delete(this.productId).subscribe({
+      next: data => {
+        this.productService.showMessage(
+          'Produto excluído com sucesso!',
+          'backsnack'
+        );
+        this.router.navigate(['/produtos']);
+      },
+      error: err => {
+        this.errorMessage = err.error['detail'];
+      }
     });
   }
 

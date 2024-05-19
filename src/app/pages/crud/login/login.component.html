@@ -21,8 +21,10 @@
             name="password"
           />
         </mat-form-field>
+        <mat-error>
+          {{ errorMessage }}
+        </mat-error>
       </form>
-      <p class="error-message">{{ errorMessage }}</p>
       <button
         mat-raised-button
         color="primary"
