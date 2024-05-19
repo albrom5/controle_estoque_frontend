@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CrudComponent } from '../crud/crud.component';
+import { ProductReadComponent } from '../crud/product-read/product-read.component';
 import { ProductCreateComponent } from '../crud/product-create/product-create.component';
 import { ProductDeleteComponent } from '../crud/product-delete/product-delete.component';
 import { ProductUpdateComponent } from '../../shared/components/product/product-update/product-update.component';
@@ -21,6 +22,7 @@ import { EstoqueCrudComponent } from '../crud/estoque-crud/estoque-crud.componen
 import { EstoqueCreateComponent } from '../crud/estoque-create/estoque-create.component';
 import { EstoqueDeleteComponent } from '../crud/estoque-delete/estoque-delete.component';
 import { EstoqueUpdateComponent } from '../../shared/components/estoque/estoque-update/estoque-update.component';
+import { EstoqueMovimentosComponent } from '../crud/estoque-movimentos/estoque-movimentos.component';
 
 import { HomeComponent } from './home.component';
 
@@ -30,10 +32,10 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
 
-  { path: 'crud', component: CrudComponent },
-  { path: 'product/create', component: ProductCreateComponent },
-  { path: 'product/update/:id', component: ProductUpdateComponent },
-  { path: 'product/delete/:id', component: ProductDeleteComponent },
+  { path: 'produtos', component: CrudComponent },
+  { path: 'produto/create', component: ProductCreateComponent },
+  { path: 'produto/update/:id', component: ProductUpdateComponent },
+  { path: 'produto/delete/:id', component: ProductDeleteComponent },
 
   { path: 'marca', component: MarcaCrudComponent },
   { path: 'marca/create', component: MarcaCreateComponent },
@@ -49,6 +51,7 @@ const routes: Routes = [
   { path: 'estoque/create', component: EstoqueCreateComponent },
   { path: 'estoque/update/:id', component: EstoqueUpdateComponent },
   { path: 'estoque/delete/:id', component: EstoqueDeleteComponent },
+  { path: 'estoque/movimentos/:id', component: EstoqueMovimentosComponent },
 ];
 
 @NgModule({

@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IEstoque } from 'src/app/shared/models/iestoque.model';
 import { EstoqueService } from 'src/app/shared/services/estoque.service';
+import { IProduct } from 'src/app/shared/models/iproduct.model';
+import { ProductService } from 'src/app/shared/services/product.service';
+import { IArmazem } from 'src/app/shared/models/iarmazem.model';
+import { ArmazemService } from 'src/app/shared/services/armazem.service';
 
 @Component({
   selector: 'app-estoque-create',
@@ -14,11 +18,16 @@ export class EstoqueCreateComponent implements OnInit {
 
   constructor(
     private estoqueService: EstoqueService,
+    private produtoService: ProductService,
+    private armazemService: ArmazemService,
     private router: Router,
     private fb: FormBuilder
   ) {
     this.estoqueForm = fb.group({
-      name: ['', Validators.required],
+      armazem_id: ['', Validators.required],
+      produto_id: ['', Validators.required],
+      quantidade: ['', Validators.required],
+      preco: ['', Validators.required],
     });
   }
 
@@ -31,7 +40,13 @@ export class EstoqueCreateComponent implements OnInit {
     return this.estoqueForm.controls;
   }
 
-  ngOnInit(): void {}
+  armazemList: IArmazem[];
+  produtoList: IProduct[];
+
+  ngOnInit(): void {
+    this.armazemService.readArmazem().subscribe(data => {this.armazemList = data['lista']});
+    this.produtoService.readProduct().subscribe(data => {this.produtoList = data['lista']});
+  }
 
   createEstoque(): void {
     this.estoqueService.createEstoque(this.estoque).subscribe(() => {

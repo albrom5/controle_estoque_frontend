@@ -12,7 +12,7 @@ import { MarcaService } from 'src/app/shared/services/marca.service';
 export class MarcaReadComponent implements OnInit {
   marcas!: IMarca[];
 
-  displayedColumns = ['id', 'name','action'];
+  displayedColumns = ['name','action'];
 
   constructor(private marcaService: MarcaService) {}
 

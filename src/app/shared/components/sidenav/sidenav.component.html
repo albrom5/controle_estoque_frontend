@@ -11,7 +11,7 @@
           <img src="assets/Logo_Alimentação.png" alt="" />
         </a>
       </span>
-      <mat-nav-list class="list">
+      <mat-nav-list class="list" *ngIf="isLoggedIn">
         <mat-list-item>
           <a routerLink="">
             <mat-icon> home </mat-icon>
@@ -20,7 +20,7 @@
         </mat-list-item>
 
         <mat-list-item>
-          <a routerLink="crud">
+          <a routerLink="produtos">
             <mat-icon> inventory_2</mat-icon>
             Produtos
           </a>
@@ -46,7 +46,22 @@
             Estoque
           </a>
         </mat-list-item>
-
+      </mat-nav-list>
+      <mat-nav-list *ngIf="!isLoggedIn" class="list">
+        <mat-list-item>
+          <a routerLink="/login">
+            <mat-icon> login</mat-icon>
+            Entrar
+          </a>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list *ngIf="isLoggedIn" class="list">
+        <mat-list-item>
+          <a (click)="logout()">
+            <mat-icon> logout</mat-icon>
+            Sair
+          </a>
+        </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

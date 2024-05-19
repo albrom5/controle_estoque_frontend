@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IArmazem } from 'src/app/shared/models/iarmazem.model';
 import { ArmazemService } from 'src/app/shared/services/armazem.service';
+import { MunicipioService } from 'src/app/shared/services/municipio.service';
+import { IMunicipio } from 'src/app/shared/models/imunicipio';
 
 @Component({
   selector: 'app-armazem-create',
@@ -14,11 +16,17 @@ export class ArmazemCreateComponent implements OnInit {
 
   constructor(
     private armazemService: ArmazemService,
+    private municipioService: MunicipioService,
     private router: Router,
     private fb: FormBuilder
   ) {
     this.armazemForm = fb.group({
-      name: ['', Validators.required],
+      nome: ['', Validators.required],
+      municipio_id: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      numero: ['', Validators.required],
+      complemento: ['', Validators.required],
+      cep: ['', Validators.required],
     });
   }
 
@@ -31,16 +39,26 @@ export class ArmazemCreateComponent implements OnInit {
     return this.armazemForm.controls;
   }
 
-  ngOnInit(): void {}
+  municipioList: IMunicipio[];
+
+  ngOnInit(): void {
+    this.municipioService.readMunicipio().subscribe(data => {this.municipioList = data['lista']});
+  }
+
+  errorMessage: string = '';
 
   createArmazem(): void {
-    this.armazemService.createArmazem(this.armazem).subscribe(() => {
-      this.armazemService.showMessage(
-        'Armazem criado com sucesso!',
-        'backsnack'
-      );
-      this.router.navigate(['/armazem']);
-      console.log(this.armazem);
+    this.armazemService.createArmazem(this.armazem).subscribe({
+      next: data => {
+        this.armazemService.showMessage(
+          'Local de armazenagem criado com sucesso!',
+          'backsnack'
+        );
+        this.router.navigate(['/armazem']);
+      },
+      error: err => {
+        this.errorMessage = err.error['detail'];
+      }
     });
   }
 

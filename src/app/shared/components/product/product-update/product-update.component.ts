@@ -52,19 +52,23 @@ export class ProductUpdateComponent implements OnInit {
     });
   }
 
+  errorMessage: string = '';
   updateProduct(): void {
-    this.productService
-      .update(this.productForm.value, this.productId)
-      .subscribe((product) => {
+    this.productService.update(this.productForm.value, this.productId).subscribe({
+      next: data => {
         this.productService.showMessage(
           'Produto atualizado com sucesso!',
           'backsnack'
         );
-        this.router.navigate(['/crud']);
-      });
+        this.router.navigate(['/produtos']);
+      },
+      error: err => {
+        this.errorMessage = err.error['detail'];
+      }
+    });
   }
 
   cancel(): void {
-    this.router.navigate(['/crud']);
+    this.router.navigate(['/produtos']);
   }
 }

@@ -17,8 +17,10 @@ import { MarcaService } from './shared/services/marca.service';
 import { ArmazemService } from './shared/services/armazem.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
-import {MatSelectModule} from '@angular/material/select';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { MaterialModule } from './shared/material/material.module';
@@ -45,6 +47,11 @@ import { EstoqueDeleteComponent } from './pages/crud/estoque-delete/estoque-dele
 import { EstoqueReadComponent } from './pages/crud/estoque-read/estoque-read.component';
 import { EstoqueUpdateComponent } from './shared/components/estoque/estoque-update/estoque-update.component';
 import { authInterceptorProvider } from './shared/helpers/auth.interceptor';
+import { errorInterceptorProvider } from './shared/helpers/error.interceptor';
+import { EstoqueMovimentosComponent } from './pages/crud/estoque-movimentos/estoque-movimentos.component';
+import { DialogMovimentoEntradaComponent } from './pages/crud/dialog-movimento-entrada/dialog-movimento-entrada.component';
+import { DialogMovimentoSaidaComponent } from './pages/crud/dialog-movimento-saida/dialog-movimento-saida.component';
+
 
 registerLocaleData(localePt);
 
@@ -76,7 +83,10 @@ registerLocaleData(localePt);
     EstoqueCreateComponent,
     EstoqueDeleteComponent,
     EstoqueReadComponent,
-    EstoqueUpdateComponent
+    EstoqueUpdateComponent,
+    EstoqueMovimentosComponent,
+    DialogMovimentoEntradaComponent,
+    DialogMovimentoSaidaComponent
   ],
   imports: [
     BrowserModule,
@@ -90,10 +100,14 @@ registerLocaleData(localePt);
     MaterialModule,
     MatFormFieldModule, 
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [
     authInterceptorProvider,
+    errorInterceptorProvider,
     ProductService,
     {
       provide: LOCALE_ID,

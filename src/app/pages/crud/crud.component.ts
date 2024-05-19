@@ -12,6 +12,6 @@ export class CrudComponent implements OnInit {
   ngOnInit(): void {}
 
   navigateToProductCreate(): void {
-    this.router.navigate(['/product/create']);
+    this.router.navigate(['/produto/create']);
   }
 }

@@ -24,7 +24,7 @@ export class MarcaUpdateComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.marcaForm = fb.group({
-      name: ['', Validators.required],
+      nome: ['', Validators.required],
     });
   }
 
@@ -35,15 +35,19 @@ export class MarcaUpdateComponent implements OnInit {
     });
   }
 
+  errorMessage: string = '';
   updateMarca(): void {
-    this.marcaService
-      .update(this.marcaForm.value, this.marcaId)
-      .subscribe((marca) => {
+    this.marcaService.update(this.marcaForm.value, this.marcaId).subscribe({
+      next: data => {
         this.marcaService.showMessage(
           'Marca atualizada com sucesso!',
           'backsnack'
         );
         this.router.navigate(['/marca']);
+      },
+      error: err => {
+        this.errorMessage = err.error['detail'];
+      }
       });
   }
 

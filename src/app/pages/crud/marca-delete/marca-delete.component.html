@@ -1,1 +1,17 @@
-<p>marca-delete works!</p>
+<mat-card class="mat-elevation-z4">
+  <mat-card-title> Excluir a marca {{ marca.nome }} </mat-card-title>
+  <br>
+  <mat-error>
+    {{ errorMessage }}
+  </mat-error>
+  <br>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="deleteMarca()"
+    >
+      Excluir
+    </button>
+    <button mat-raised-button (click)="cancel()">Cancelar</button>
+  </mat-card>
+  

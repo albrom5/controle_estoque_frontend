@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Registrar entrada em estoque</h2>
+<mat-dialog-content class="mat-typography">
+  <p><strong>Local de armazenagem:</strong> {{ estoque.armazem_nome }}</p>
+  <p><strong>Produto:</strong> {{ estoque.produto_nome }} {{ estoque.produto_marca }} ({{ estoque.produto_unidade_medida}})</p>
+  <br>
+  <form [formGroup]="movimentoForm">
+    <mat-form-field>
+      <input type="number" min="0" placeholder="Quantidade" matInput formControlName="quantidade" name="quantidade" />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          movimentoFormControl.quantidade.touched &&
+          movimentoFormControl.quantidade.errors?.required
+        "
+        class="text-danger"
+      >
+        Quantidade obrigatória
+      </span>
+    </p>
+    <mat-form-field>
+      <input type="number" min="0" placeholder="Preço Unitário" matInput formControlName="preco" name="preco" />
+    </mat-form-field>
+    <p>
+      <span
+        *ngIf="
+          movimentoFormControl.preco.touched &&
+          movimentoFormControl.preco.errors?.required
+        "
+        class="text-danger"
+      >
+        Preço obrigatório
+      </span>
+    </p>
+    <mat-error>
+      {{ errorMessage }}
+    </mat-error>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="entradaEstoque()" [disabled]="movimentoForm.invalid">
+    Registrar
+  </button>
+
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>
